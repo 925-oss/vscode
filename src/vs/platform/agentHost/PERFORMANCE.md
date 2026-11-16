@@ -331,6 +331,6 @@ Load failure rate is `error / (loaded + error)`; compute latency percentiles fro
 
 Reuse `copilotSdk/tool_call_executed` (`tool_name`, `invoke_outcome`, `duration_ms`) for `list_canvas_capabilities`, `open_canvas`, `invoke_canvas_action`, and `extensions_reload`. The reload override marks only its fixed name as safe. Use standard (`restricted=false`) SDK rows, deduplicated by `sdk_session_id` and `event_id`, to avoid counting restricted copies.
 
-For `/create-canvas`, filter `copilotSdk/skill_invoked.skill_name_hash` to the lowercase SHA-256 of the UTF-8 name without the slash: `33b7d9f0b8715b9f10e8185fb3fd5405e7ca6ac4e5e005885982b019378097f1`. A custom skill with the same name matches too. Invocation does not prove successful authoring or a canvas open; plaintext skill metadata is unnecessary.
+For `/create-canvas`, filter `copilotSdk/skill_invoked.skill_name_hash` to the lowercase SHA-256 of the UTF-8 name without the slash: `33b7d9f0b8715b9f10e8185fb3fd5405e7ca6ac4e5e005885982b019378097f1`. A custom skill with the same name matches too; on builds that report it, `agentHost.skillInvoked` with `skillOrigin` `vscode` and `skillName` `create-canvas` excludes those. Invocation does not prove successful authoring or a canvas open; plaintext skill metadata is unnecessary.
 
 Opens, browser creations, loads, and tool calls have different denominators; these events do not establish a conversion funnel or feature-availability rate. New canvas events omit URLs, titles, instance names, extension identities, arguments, and raw errors.

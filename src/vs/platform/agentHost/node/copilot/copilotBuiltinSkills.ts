@@ -14,6 +14,9 @@ import { CustomizationLoadStatus, customizationId, type DirectoryCustomization }
 
 const troubleshootName = 'troubleshoot';
 const modelRouterName = 'model-router';
+
+/** Names of the skills {@link createCopilotSkillProvider} serves. */
+export const copilotHostSkillNames: ReadonlySet<string> = new Set([troubleshootName, modelRouterName]);
 const skillsDirectory = URI.from({ scheme: AGENT_BUILTIN_CUSTOMIZATION_SCHEME, path: '/skills' });
 const troubleshootUri = URI.from({ scheme: AGENT_BUILTIN_CUSTOMIZATION_SCHEME, path: '/skill/troubleshoot' });
 const modelRouterUri = URI.from({ scheme: AGENT_BUILTIN_CUSTOMIZATION_SCHEME, path: '/skill/model-router' });
