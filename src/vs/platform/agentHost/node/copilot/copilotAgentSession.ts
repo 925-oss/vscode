@@ -2008,6 +2008,7 @@ export class CopilotAgentSession extends Disposable {
 	}
 	get currentTurnClientType(): AgentHostClientType { return this._currentTurn.value?.clientType ?? AgentHostClientType.Unknown; }
 	get currentTurnClientContext(): IAgentHostClientTelemetryContext | undefined { return this._currentTurn.value?.clientContext; }
+	get currentTurnTelemetryContext(): IAgentTelemetryContext | undefined { return this._currentTurn.value?.telemetryContext; }
 
 	async collectDebugLogs(outputDirectory: URI, includeSessionLogs: boolean): Promise<boolean> {
 		let result: Awaited<ReturnType<CopilotSession['rpc']['debug']['collectLogs']>>;

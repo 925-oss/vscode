@@ -70,7 +70,7 @@ import { AGENT_HOST_FILE_SCHEME, IAgentPluginManager, ISyncedCustomization } fro
 import { toAgentCustomizationMeta } from '../../common/meta/agentCustomizationMeta.js';
 import type { IAgentChatInputResponseMeta } from '../../common/meta/agentChatInputResponseMeta.js';
 import { decodeProviderData, encodeProviderData, type IPersistedChat } from '../agentChatBackings.js';
-import { type IAgentPluginInstallation, type AgentCanvasDefinitionSnapshot, AgentChatOperationContext, AgentSession, fixedChatOwnerRef, getChatSurfaceOptions, type IAgentChatOwnerRef, isAgentChatDefaultChat, resolveSessionBackedStorage, AgentSignal, AuthenticateParams, COPILOT_CLI_AGENT_PROVIDER_ID, IActiveClient, IAgent, IAgentChatAdoptionResult, type IAgentAdoptedWorktree, type IAgentCanvasCloseRequest, type IAgentCanvasOpenRequest, type AgentCanvasOpenAnswer, type AgentCanvasOpenResult, type IAgentChatCanvasWatchHost, IAgentChatConfigCompletionsParams, IAgentChatContext, type IAgentChatMetadataOptions, type IAgentChatReleaseOptions, IAgentChatSessionSettings, IAgentChatDataChange, IAgentChatMetadata, IAgentChats, IAgentLegacyChat, IAgentCreateChatOptions, IAgentCreateChatResult, IAgentCustomizationInstallation, IAgentCustomizationInstallationApplyRequest, IAgentCustomizationInstallationApplyResult, IAgentCustomizationInstallationPreparation, IAgentCustomizationInstallationRequest, IAgentCustomizationMarketplaceSearchRequest, IAgentCustomizationMarketplaceSearchResult, IAgentDescriptor, IAgentDiscoveredChat, type IAgentExtensionInfo, type IAgentExtensionInventory, IAgentListedChat, IAgentHostManagedSettingsSnapshot, IAgentHostNetworkEndpoint, IAgentKnownSessionsFilter, type IAgentManagedPluginRetryEntry, IAgentMaterializeChatEvent, IAgentModelInfo, type IAgentPendingMessageSender, type IAgentPermissionResponseContext, type IAgentPluginInstallRequest, type IAgentPluginMarketplace, type IAgentPluginMarketplaceItem, type IAgentPluginMarketplaceRefreshResult, type IAgentPluginMarketplaceRemoveResult, type IAgentPluginUninstallRequest, type IAgentPrepareChatResult, IAgentResolveChatConfigParams, IAgentSessionProjectInfo, IAgentSpawnChatEvent, IMcpNotification, isAgentExtensionEnabledAndSettled, SubagentChatSignal, resolveAgentChatContext, resolveAgentHostCustomizations, resolveAgentHostInstructions, resolveSubagentChatParent, type IAgentTurnDiagnosticSnapshot, type IAgentTurnTokenUsage, type IAgentChatSessionEvent, type IAgentImportChatOptions, type IAgentImportedChat, type IAgentTurnModelRequest, type IAgentTurnModelResolution, type IAgentChatHistoryChange } from '../../common/agent.js';
+import { type IAgentPluginInstallation, type IAgentTelemetryContext, type AgentCanvasDefinitionSnapshot, AgentChatOperationContext, AgentSession, fixedChatOwnerRef, getChatSurfaceOptions, type IAgentChatOwnerRef, isAgentChatDefaultChat, resolveSessionBackedStorage, AgentSignal, AuthenticateParams, COPILOT_CLI_AGENT_PROVIDER_ID, IActiveClient, IAgent, IAgentChatAdoptionResult, type IAgentAdoptedWorktree, type IAgentCanvasCloseRequest, type IAgentCanvasOpenRequest, type AgentCanvasOpenAnswer, type AgentCanvasOpenResult, type IAgentChatCanvasWatchHost, IAgentChatConfigCompletionsParams, IAgentChatContext, type IAgentChatMetadataOptions, type IAgentChatReleaseOptions, IAgentChatSessionSettings, IAgentChatDataChange, IAgentChatMetadata, IAgentChats, IAgentLegacyChat, IAgentCreateChatOptions, IAgentCreateChatResult, IAgentCustomizationInstallation, IAgentCustomizationInstallationApplyRequest, IAgentCustomizationInstallationApplyResult, IAgentCustomizationInstallationPreparation, IAgentCustomizationInstallationRequest, IAgentCustomizationMarketplaceSearchRequest, IAgentCustomizationMarketplaceSearchResult, IAgentDescriptor, IAgentDiscoveredChat, type IAgentExtensionInfo, type IAgentExtensionInventory, IAgentListedChat, IAgentHostManagedSettingsSnapshot, IAgentHostNetworkEndpoint, IAgentKnownSessionsFilter, type IAgentManagedPluginRetryEntry, IAgentMaterializeChatEvent, IAgentModelInfo, type IAgentPendingMessageSender, type IAgentPermissionResponseContext, type IAgentPluginInstallRequest, type IAgentPluginMarketplace, type IAgentPluginMarketplaceItem, type IAgentPluginMarketplaceRefreshResult, type IAgentPluginMarketplaceRemoveResult, type IAgentPluginUninstallRequest, type IAgentPrepareChatResult, IAgentResolveChatConfigParams, IAgentSessionProjectInfo, IAgentSpawnChatEvent, IMcpNotification, isAgentExtensionEnabledAndSettled, SubagentChatSignal, resolveAgentChatContext, resolveAgentHostCustomizations, resolveAgentHostInstructions, resolveSubagentChatParent, type IAgentTurnDiagnosticSnapshot, type IAgentTurnTokenUsage, type IAgentChatSessionEvent, type IAgentImportChatOptions, type IAgentImportedChat, type IAgentTurnModelRequest, type IAgentTurnModelResolution, type IAgentChatHistoryChange } from '../../common/agent.js';
 import { createModelRouterModelMeta, DecisionsApiFeatureFlag, MODEL_ROUTER_FOLDER, MODEL_ROUTER_MAX_FILE_BYTES, modelRouterModelId, type IModelRouter } from '../../common/modelRouter.js';
 import { resolveModelRouterGuidance } from '../../common/modelRouterGuidance.js';
 import { AgentDecisionsUnavailableError, type IAgentDecisionsRequest, type IAgentDecisionsResult } from '../../common/agentDecisions.js';
@@ -4262,7 +4262,7 @@ export class CopilotAgent extends Disposable implements IAgent {
 			const fusionId = isHydraFusionTelemetryKind(notification.event.kind) ? notification.event.properties.fusion_id : undefined;
 			// A route row can arrive before the session links its workflow to a turn; it still joins through fusion_id.
 			const fusionTurnId = typeof fusionId === 'string' && fusionId ? session?.getFusionTurnId(fusionId) : undefined;
-			this._gitHubTelemetryForwarder.forward(notification, fusionTurnId, undefined, modelCallId ? session?.modelCallTurnCorrelation.getTelemetryContext(modelCallId) : undefined, clientType);
+			this._gitHubTelemetryForwarder.forward(notification, fusionTurnId, undefined, this._telemetryContextForRow(session, modelCallId), clientType);
 		}
 	}
 
@@ -4270,13 +4270,22 @@ export class CopilotAgent extends Disposable implements IAgent {
 		const session = notification.sessionId ? this._findSessionBySdkId(notification.sessionId) : undefined;
 		const attemptId = notification.event.properties.compaction_attempt_id;
 		const modelCallId = this._modelCallIdForTelemetry(notification);
-		const telemetryContext = modelCallId ? session?.modelCallTurnCorrelation.getTelemetryContext(modelCallId) : undefined;
+		const telemetryContext = this._telemetryContextForRow(session, modelCallId);
 		const correlation: IForwardedCompactionCorrelation = !session
 			? { turnId: undefined, outcome: 'sessionNotFound' }
 			: typeof attemptId !== 'string' || !attemptId
 				? { turnId: undefined, outcome: 'missingAttemptId' }
 				: await session.compactionTurnCorrelation.resolve(attemptId);
 		this._gitHubTelemetryForwarder.forwardCompaction(notification, correlation, telemetryContext, clientType);
+	}
+
+	/**
+	 * Account context for a forwarded row that is not a model response: the model call's own
+	 * context when the row names one, otherwise the active turn's, so cache-break, skill and
+	 * compaction rows carry the SKU too. Both contexts stop reporting once credentials change.
+	 */
+	private _telemetryContextForRow(session: CopilotAgentSession | undefined, modelCallId: string | undefined): IAgentTelemetryContext | undefined {
+		return (modelCallId ? session?.modelCallTurnCorrelation.getTelemetryContext(modelCallId) : undefined) ?? session?.currentTurnTelemetryContext;
 	}
 
 	private _modelCallIdForTelemetry(notification: GitHubTelemetryNotification): string | undefined {
