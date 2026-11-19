@@ -410,6 +410,14 @@ jobs:
       # No cache holds WebKit. Its system packages come from the .deb files that main caches (see
       # .github/actions/install-linux-packages), as the apt mirrors are at times too slow to download them
       # within the timeout, so that `--with-deps` only installs what the cached files lack.
+      # TEMP: save the .deb files in the pull request's cache scope on the first attempt, so that a rerun proves the cached install
+      - name: TEMP save the system packages of Playwright WebKit
+        if: ${{ env.BROWSER_TESTS == 'true' && env.UNIT_TEST_BROWSER == 'webkit' && github.run_attempt == '1' }}
+        uses: ./.github/actions/install-linux-packages
+        with:
+          list: webkit
+          save-cache: 'true'
+
       - name: Install the system packages of Playwright WebKit
         if: ${{ env.BROWSER_TESTS == 'true' && env.UNIT_TEST_BROWSER == 'webkit' }}
         uses: ./.github/actions/install-linux-packages
@@ -799,7 +807,7 @@ jobs:
     name: Browser-Unit (WebKit)
     if: ${{ inputs.browser_unit_webkit }}
     runs-on: ${{ inputs.runner }}
-    timeout-minutes: 12
+    timeout-minutes: 30
     env:
       ARTIFACT_NAME: browser-unit-webkit
       BROWSER_TESTS: 'true'

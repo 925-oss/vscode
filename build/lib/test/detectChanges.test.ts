@@ -437,7 +437,7 @@ suite('Detect Changes', () => {
 				'Linux / Electron-Smoke (shard 3/3)': skipsWhenUnaffected('product-tests'),
 				'Linux / Browser-Unit': skipsWhenUnaffected('selected-browser-unit-tests'),
 				// Only the merge queue runs it
-				'Linux / Browser-Unit (WebKit)': `\${{ github.event_name == 'merge_group' && (needs.changes.result != 'success' || needs.changes.outputs.selected-browser-unit-tests == 'true') }}`,
+				'Linux / Browser-Unit (WebKit)': `\${{ (github.event_name == 'merge_group' || github.event_name == 'pull_request') && (needs.changes.result != 'success' || needs.changes.outputs.selected-browser-unit-tests == 'true') }}`,
 				'Linux / Browser': skipsWhenUnaffected('browser-integration'),
 				'Linux / Remote (integration)': skipsWhenUnaffected('product-tests'),
 				'Linux / Remote (smoke)': skipsWhenUnaffected('product-tests'),
