@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { registerAzure } from './azure';
+import { registerBitbucket } from './bitbucket';
 import { registerGitChanges } from './changes';
 import { registerCompose } from './compose';
 import { registerHelm } from './helm';
@@ -18,7 +19,7 @@ export function activate(context: vscode.ExtensionContext): void {
 	registerJenkins(context);
 	registerKubernetes(context);
 	registerAzure(context);
-	registerJira(context);
+	registerBitbucket(context, registerJira(context));
 }
 
 export function deactivate(): void { }

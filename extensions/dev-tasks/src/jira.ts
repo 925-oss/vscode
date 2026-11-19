@@ -6,7 +6,7 @@ import type { Repository } from './typings/git';
 /**
  * A Jira work item as `twg -o json` returns it.
  */
-interface WorkItem {
+export interface WorkItem {
 	readonly key: string;
 	readonly summary: string;
 	readonly url: string;
@@ -42,7 +42,7 @@ function slug(text: string): string {
 /**
  * Shows Jira work items for keys in code, commit messages and the current branch.
  */
-class Jira implements vscode.Disposable, vscode.HoverProvider {
+export class Jira implements vscode.Disposable, vscode.HoverProvider {
 
 	private readonly cache = new Map<string, { readonly time: number; readonly item: Promise<WorkItem | undefined> }>();
 	private readonly statusBarItem = createStatusBarItem('devTools.jira', vscode.l10n.t("Jira Work Item"), 20);
@@ -108,12 +108,19 @@ class Jira implements vscode.Disposable, vscode.HoverProvider {
 		return new vscode.Hover(markdown, range);
 	}
 
+	/**
+	 * The work item a branch such as `feature/APS-123-fix-login` was made for, when Jira knows it and twg is installed.
+	 */
+	async getWorkItemOfBranch(branch: string): Promise<WorkItem | undefined> {
+		const key = keyPattern.exec(branch.toUpperCase())?.[0];
+		// Branch names such as release/q3-2026 look like keys, so only return work items Jira knows.
+		return key && isProjectKey(key) && await isAvailable('twg') ? this.getWorkItem(key) : undefined;
+	}
+
 	private async refreshStatus(): Promise<void> {
 		const repository = await getRepository();
 		const branch = repository?.state.HEAD?.name;
-		const key = branch && keyPattern.exec(branch.toUpperCase())?.[0];
-		// Branch names such as release/q3-2026 look like keys, so only show work items Jira knows.
-		const item = key && isProjectKey(key) ? await this.getWorkItem(key) : undefined;
+		const item = branch ? await this.getWorkItemOfBranch(branch) : undefined;
 		if (branch !== (await getRepository())?.state.HEAD?.name) {
 			return; // The branch changed while loading; a newer refresh handles it.
 		}
@@ -207,8 +214,10 @@ class Jira implements vscode.Disposable, vscode.HoverProvider {
 }
 
 /**
- * Registers Jira hovers, the branch status bar item and the Start Work command.
+ * Registers Jira hovers, the branch status bar item and the Start Work command, and returns the work item lookup.
  */
-export function registerJira(context: vscode.ExtensionContext): void {
-	context.subscriptions.push(new Jira());
+export function registerJira(context: vscode.ExtensionContext): Jira {
+	const jira = new Jira();
+	context.subscriptions.push(jira);
+	return jira;
 }

@@ -44,6 +44,9 @@ configurationRegistry.registerDefaultConfigurations([{
 		'breadcrumbs.enabled': false,
 		'chat.commandCenter.enabled': false,
 
+		// Follow the system appearance: Quenchlight Day in daylight, Quenchlight at night
+		'window.autoDetectColorScheme': true,
+
 		'editor.fontFamily': '\'JetBrainsMono Nerd Font\', \'JetBrains Mono\', Menlo, Monaco, \'Courier New\', monospace',
 		'editor.fontSize': 13,
 		'editor.lineHeight': 1.7,

@@ -165,6 +165,21 @@
 				"command": "devTools.jira.openCurrent",
 				"title": "%command.jira.openCurrent%",
 				"category": "%category.jira%"
+			},
+			{
+				"command": "devTools.bitbucket.createPullRequest",
+				"title": "%command.bitbucket.createPullRequest%",
+				"category": "%category.bitbucket%"
+			},
+			{
+				"command": "devTools.bitbucket.showPullRequest",
+				"title": "%command.bitbucket.showPullRequest%",
+				"category": "%category.bitbucket%"
+			},
+			{
+				"command": "devTools.bitbucket.showInbox",
+				"title": "%command.bitbucket.showInbox%",
+				"category": "%category.bitbucket%"
 			}
 		],
 		"menus": {
@@ -403,6 +418,17 @@
 						"type": "string",
 						"default": "feature/",
 						"description": "%config.devTools.jira.branchPrefix%"
+					}
+				}
+			},
+			{
+				"id": "devTools.bitbucket",
+				"title": "%config.bitbucket.title%",
+				"properties": {
+					"devTools.bitbucket.statusBar": {
+						"type": "boolean",
+						"default": true,
+						"description": "%config.devTools.bitbucket.statusBar%"
 					}
 				}
 			}

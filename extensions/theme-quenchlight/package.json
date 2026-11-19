@@ -16,6 +16,18 @@
         "label": "%themeLabel%",
         "uiTheme": "vs-dark",
         "path": "./themes/quenchlight-color-theme.json"
+      },
+      {
+        "id": "Quenchlight Day",
+        "label": "%dayThemeLabel%",
+        "uiTheme": "vs",
+        "path": "./themes/quenchlight-day-color-theme.json"
+      },
+      {
+        "id": "Quenchlight Forge",
+        "label": "%forgeThemeLabel%",
+        "uiTheme": "vs-dark",
+        "path": "./themes/quenchlight-forge-color-theme.json"
       }
     ]
   },

@@ -1,5 +1,7 @@
 {
 	"displayName": "Quenchlight Theme",
-	"description": "A forge theme: warm charcoal, ember orange and the straw, violet and blue temper colors of heated steel.",
-	"themeLabel": "Quenchlight"
+	"description": "Quiet themes for day and night. Colour marks four things: definitions, comments, strings and literal values. Keywords and punctuation recede. Quenchlight Forge is the original, more colourful forge theme.",
+	"themeLabel": "Quenchlight",
+	"dayThemeLabel": "Quenchlight Day",
+	"forgeThemeLabel": "Quenchlight Forge"
 }

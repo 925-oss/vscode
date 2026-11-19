@@ -20,8 +20,8 @@ import { IThemeMainService } from './themeMainService.js';
 
 // These default colors match our default themes
 // editor background color ("Dark Modern", etc...)
-const DEFAULT_BG_LIGHT = '#FFFFFF';
-const DEFAULT_BG_DARK = '#1F1F1F';
+const DEFAULT_BG_LIGHT = '#faf6ef';
+const DEFAULT_BG_DARK = '#1e1c19';
 const DEFAULT_BG_HC_BLACK = '#000000';
 const DEFAULT_BG_HC_LIGHT = '#FFFFFF';
 
@@ -41,7 +41,7 @@ class Setting<T> {
 
 // in the main process, defaults are not known to the configuration service, so we need to define them here
 namespace Setting {
-	export const DETECT_COLOR_SCHEME = new Setting<boolean>('window.autoDetectColorScheme', false);
+	export const DETECT_COLOR_SCHEME = new Setting<boolean>('window.autoDetectColorScheme', true);
 	export const DETECT_HC = new Setting<boolean>('window.autoDetectHighContrast', true);
 	export const SYSTEM_COLOR_THEME = new Setting<'default' | 'auto' | 'light' | 'dark'>('window.systemColorTheme', 'default');
 	export const AUXILIARYBAR_DEFAULT_VISIBILITY = new Setting<'hidden' | 'visibleInWorkspace' | 'visible' | 'maximizedInWorkspace' | 'maximized'>('workbench.secondarySideBar.defaultVisibility', 'visibleInWorkspace');
