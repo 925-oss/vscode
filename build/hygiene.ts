@@ -16,13 +16,6 @@ import { Formatter } from './lib/formatter.ts';
 import { oxlint } from './oxlint.ts';
 import gulpstylelint from './stylelint.ts';
 
-const copyrightHeaderLines = [
-	'/*---------------------------------------------------------------------------------------------',
-	' *  Copyright (c) Microsoft Corporation. All rights reserved.',
-	' *  Licensed under the MIT License. See License.txt in the project root for license information.',
-	' *--------------------------------------------------------------------------------------------*/',
-];
-
 interface VinylFileWithLines extends VinylFile {
 	__lines: string[];
 }
@@ -159,20 +152,6 @@ export function hygiene(some: NodeJS.ReadWriteStream | string[] | undefined, run
 		this.emit('data', file);
 	});
 
-	const copyrights = es.through(function (file: VinylFileWithLines) {
-		const lines = file.__lines;
-
-		for (let i = 0; i < copyrightHeaderLines.length; i++) {
-			if (lines[i] !== copyrightHeaderLines[i]) {
-				console.error(file.relative + ': Missing or bad copyright statement');
-				errorCount++;
-				break;
-			}
-		}
-
-		this.emit('data', file);
-	});
-
 	// Started for the first file that the formatting check covers.
 	let formatter: Promise<Formatter> | undefined;
 	const formatting = es.map(function (file: VinylFile, cb) {
@@ -227,9 +206,7 @@ export function hygiene(some: NodeJS.ReadWriteStream | string[] | undefined, run
 		.pipe(filter(Array.from(indentationFilter)))
 		.pipe(trackCheckedFile())
 		.pipe(indentation)
-		.pipe(filter(Array.from(copyrightFilter)))
-		.pipe(trackCheckedFile())
-		.pipe(copyrights);
+		.pipe(filter(Array.from(copyrightFilter)));
 
 	const streams: NodeJS.ReadWriteStream[] = [
 		result.pipe(filter(Array.from(tsFormattingFilter))).pipe(trackCheckedFile()).pipe(formatting)

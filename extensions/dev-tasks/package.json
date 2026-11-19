@@ -1,0 +1,555 @@
+{
+	"name": "dev-tasks",
+	"publisher": "quenchlight",
+	"description": "%description%",
+	"displayName": "%displayName%",
+	"version": "10.0.0",
+	"private": true,
+	"license": "MIT",
+	"engines": {
+		"vscode": "*"
+	},
+	"categories": [
+		"Other"
+	],
+	"scripts": {
+		"compile": "gulp compile-extension:dev-tasks",
+		"watch": "gulp watch-extension:dev-tasks"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "24.x"
+	},
+	"main": "./out/main",
+	"activationEvents": [
+		"onStartupFinished",
+		"onTaskType:compose",
+		"onTaskType:helm",
+		"onTaskType:typeorm",
+		"onTaskType:jenkins"
+	],
+	"capabilities": {
+		"virtualWorkspaces": false,
+		"untrustedWorkspaces": {
+			"supported": false
+		}
+	},
+	"contributes": {
+		"commands": [
+			{
+				"command": "devTools.git.showChanges",
+				"title": "%command.git.showChanges%",
+				"category": "%category.git%"
+			},
+			{
+				"command": "devTools.helm.render",
+				"title": "%command.helm.render%",
+				"category": "%category.helm%"
+			},
+			{
+				"command": "devTools.typeorm.generate",
+				"title": "%command.typeorm.generate%",
+				"category": "%category.typeorm%"
+			},
+			{
+				"command": "devTools.typeorm.run",
+				"title": "%command.typeorm.run%",
+				"category": "%category.typeorm%",
+				"icon": "$(play)"
+			},
+			{
+				"command": "devTools.typeorm.revert",
+				"title": "%command.typeorm.revert%",
+				"category": "%category.typeorm%",
+				"icon": "$(discard)"
+			},
+			{
+				"command": "devTools.typeorm.show",
+				"title": "%command.typeorm.show%",
+				"category": "%category.typeorm%",
+				"icon": "$(list-unordered)"
+			},
+			{
+				"command": "devTools.postgres.psql",
+				"title": "%command.postgres.psql%",
+				"category": "%category.postgres%"
+			},
+			{
+				"command": "devTools.postgres.syncConnections",
+				"title": "%command.postgres.syncConnections%",
+				"category": "%category.postgres%"
+			},
+			{
+				"command": "devTools.jenkins.signIn",
+				"title": "%command.jenkins.signIn%",
+				"category": "%category.jenkins%"
+			},
+			{
+				"command": "devTools.jenkins.validate",
+				"title": "%command.jenkins.validate%",
+				"category": "%category.jenkins%",
+				"icon": "$(check)"
+			},
+			{
+				"command": "devTools.jenkins.build",
+				"title": "%command.jenkins.build%",
+				"category": "%category.jenkins%",
+				"icon": "$(play)"
+			},
+			{
+				"command": "devTools.jenkins.followLog",
+				"title": "%command.jenkins.followLog%",
+				"category": "%category.jenkins%"
+			},
+			{
+				"command": "devTools.jenkins.linkJob",
+				"title": "%command.jenkins.linkJob%",
+				"category": "%category.jenkins%"
+			},
+			{
+				"command": "devTools.jenkins.openJob",
+				"title": "%command.jenkins.openJob%",
+				"category": "%category.jenkins%"
+			},
+			{
+				"command": "devTools.kubernetes.switchContext",
+				"title": "%command.kubernetes.switchContext%",
+				"category": "%category.kubernetes%"
+			},
+			{
+				"command": "devTools.kubernetes.switchNamespace",
+				"title": "%command.kubernetes.switchNamespace%",
+				"category": "%category.kubernetes%"
+			},
+			{
+				"command": "devTools.kubernetes.logs",
+				"title": "%command.kubernetes.logs%",
+				"category": "%category.kubernetes%"
+			},
+			{
+				"command": "devTools.kubernetes.shell",
+				"title": "%command.kubernetes.shell%",
+				"category": "%category.kubernetes%"
+			},
+			{
+				"command": "devTools.kubernetes.portForward",
+				"title": "%command.kubernetes.portForward%",
+				"category": "%category.kubernetes%"
+			},
+			{
+				"command": "devTools.kubernetes.describe",
+				"title": "%command.kubernetes.describe%",
+				"category": "%category.kubernetes%"
+			},
+			{
+				"command": "devTools.azure.signIn",
+				"title": "%command.azure.signIn%",
+				"category": "%category.azure%"
+			},
+			{
+				"command": "devTools.azure.switchSubscription",
+				"title": "%command.azure.switchSubscription%",
+				"category": "%category.azure%"
+			},
+			{
+				"command": "devTools.azure.getAksCredentials",
+				"title": "%command.azure.getAksCredentials%",
+				"category": "%category.azure%"
+			},
+			{
+				"command": "devTools.jira.startWork",
+				"title": "%command.jira.startWork%",
+				"category": "%category.jira%"
+			},
+			{
+				"command": "devTools.jira.openCurrent",
+				"title": "%command.jira.openCurrent%",
+				"category": "%category.jira%"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "devTools.jira.openCurrent",
+					"when": "false"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "devTools.jenkins.validate",
+					"when": "resourceFilename =~ /^Jenkinsfile|\\.jenkinsfile$/",
+					"group": "navigation@1"
+				},
+				{
+					"command": "devTools.jenkins.build",
+					"when": "resourceFilename =~ /^Jenkinsfile|\\.jenkinsfile$/",
+					"group": "navigation@2"
+				},
+				{
+					"command": "devTools.typeorm.run",
+					"when": "resourceExtname == .ts && resourcePath =~ /[\\\\/]migrations?[\\\\/]/",
+					"group": "navigation@1"
+				},
+				{
+					"command": "devTools.typeorm.revert",
+					"when": "resourceExtname == .ts && resourcePath =~ /[\\\\/]migrations?[\\\\/]/",
+					"group": "navigation@2"
+				},
+				{
+					"command": "devTools.typeorm.show",
+					"when": "resourceExtname == .ts && resourcePath =~ /[\\\\/]migrations?[\\\\/]/",
+					"group": "navigation@3"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "devTools.typeorm.run",
+					"when": "resourceExtname == .ts && resourcePath =~ /[\\\\/]migrations?[\\\\/]/",
+					"group": "7_migrations@1"
+				},
+				{
+					"command": "devTools.typeorm.revert",
+					"when": "resourceExtname == .ts && resourcePath =~ /[\\\\/]migrations?[\\\\/]/",
+					"group": "7_migrations@2"
+				},
+				{
+					"command": "devTools.typeorm.show",
+					"when": "resourceExtname == .ts && resourcePath =~ /[\\\\/]migrations?[\\\\/]/",
+					"group": "7_migrations@3"
+				},
+				{
+					"command": "devTools.jenkins.build",
+					"when": "resourceFilename =~ /^Jenkinsfile|\\.jenkinsfile$/",
+					"group": "7_jenkins@1"
+				},
+				{
+					"command": "devTools.jenkins.validate",
+					"when": "resourceFilename =~ /^Jenkinsfile|\\.jenkinsfile$/",
+					"group": "7_jenkins@2"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "devTools.jenkins.build",
+					"when": "resourceFilename =~ /^Jenkinsfile|\\.jenkinsfile$/",
+					"group": "jenkins@1"
+				},
+				{
+					"command": "devTools.jenkins.validate",
+					"when": "resourceFilename =~ /^Jenkinsfile|\\.jenkinsfile$/",
+					"group": "jenkins@2"
+				}
+			]
+		},
+		"configuration": [
+			{
+				"id": "compose",
+				"type": "object",
+				"title": "%config.title%",
+				"properties": {
+					"compose.autoDetect": {
+						"scope": "resource",
+						"type": "string",
+						"enum": [
+							"off",
+							"on"
+						],
+						"default": "on",
+						"description": "%config.compose.autoDetect%"
+					}
+				}
+			},
+			{
+				"id": "devTools.git",
+				"title": "%config.git.title%",
+				"properties": {
+					"devTools.git.changesStatusBar": {
+						"type": "boolean",
+						"default": true,
+						"description": "%config.devTools.git.changesStatusBar%"
+					}
+				}
+			},
+			{
+				"id": "devTools.helm",
+				"title": "%config.helm.title%",
+				"properties": {
+					"devTools.helm.autoDetect": {
+						"scope": "resource",
+						"type": "string",
+						"enum": [
+							"off",
+							"on"
+						],
+						"default": "on",
+						"description": "%config.devTools.helm.autoDetect%"
+					}
+				}
+			},
+			{
+				"id": "devTools.typeorm",
+				"title": "%config.typeorm.title%",
+				"properties": {
+					"devTools.typeorm.autoDetect": {
+						"scope": "resource",
+						"type": "string",
+						"enum": [
+							"off",
+							"on"
+						],
+						"default": "on",
+						"description": "%config.devTools.typeorm.autoDetect%"
+					},
+					"devTools.typeorm.dataSourceFiles": {
+						"scope": "resource",
+						"type": "string",
+						"default": "**/{data-source,datasource,database.config,datastore.config,ormconfig,typeorm.config,typeorm-cli.config}.ts",
+						"description": "%config.devTools.typeorm.dataSourceFiles%"
+					},
+					"devTools.typeorm.migrationWarnings": {
+						"scope": "resource",
+						"type": "boolean",
+						"default": true,
+						"description": "%config.devTools.typeorm.migrationWarnings%"
+					}
+				}
+			},
+			{
+				"id": "devTools.postgres",
+				"title": "%config.postgres.title%",
+				"properties": {
+					"devTools.postgres.syncSqlToolsConnections": {
+						"type": "boolean",
+						"default": true,
+						"description": "%config.devTools.postgres.syncSqlToolsConnections%"
+					}
+				}
+			},
+			{
+				"id": "devTools.jenkins",
+				"title": "%config.jenkins.title%",
+				"properties": {
+					"devTools.jenkins.url": {
+						"scope": "application",
+						"type": "string",
+						"default": "",
+						"description": "%config.devTools.jenkins.url%"
+					},
+					"devTools.jenkins.user": {
+						"scope": "application",
+						"type": "string",
+						"default": "",
+						"description": "%config.devTools.jenkins.user%"
+					},
+					"devTools.jenkins.cliJar": {
+						"scope": "machine",
+						"type": "string",
+						"default": "",
+						"description": "%config.devTools.jenkins.cliJar%"
+					},
+					"devTools.jenkins.javaPath": {
+						"scope": "machine",
+						"type": "string",
+						"default": "",
+						"description": "%config.devTools.jenkins.javaPath%"
+					}
+				}
+			},
+			{
+				"id": "devTools.kubernetes",
+				"title": "%config.kubernetes.title%",
+				"properties": {
+					"devTools.kubernetes.statusBar": {
+						"type": "boolean",
+						"default": true,
+						"description": "%config.devTools.kubernetes.statusBar%"
+					},
+					"devTools.kubernetes.productionContextPattern": {
+						"type": "string",
+						"default": "prod|prd|live",
+						"description": "%config.devTools.kubernetes.productionContextPattern%"
+					}
+				}
+			},
+			{
+				"id": "devTools.azure",
+				"title": "%config.azure.title%",
+				"properties": {
+					"devTools.azure.statusBar": {
+						"type": "boolean",
+						"default": true,
+						"description": "%config.devTools.azure.statusBar%"
+					}
+				}
+			},
+			{
+				"id": "devTools.jira",
+				"title": "%config.jira.title%",
+				"properties": {
+					"devTools.jira.hover": {
+						"type": "boolean",
+						"default": true,
+						"description": "%config.devTools.jira.hover%"
+					},
+					"devTools.jira.projectKeys": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"default": [],
+						"description": "%config.devTools.jira.projectKeys%"
+					},
+					"devTools.jira.branchPrefix": {
+						"type": "string",
+						"default": "feature/",
+						"description": "%config.devTools.jira.branchPrefix%"
+					}
+				}
+			}
+		],
+		"taskDefinitions": [
+			{
+				"type": "compose",
+				"required": [
+					"file",
+					"command"
+				],
+				"properties": {
+					"file": {
+						"type": "string",
+						"description": "%compose.taskDefinition.file.description%"
+					},
+					"command": {
+						"type": "string",
+						"enum": [
+							"up",
+							"down",
+							"restart",
+							"logs",
+							"ps",
+							"pull",
+							"build"
+						],
+						"description": "%compose.taskDefinition.command.description%"
+					},
+					"service": {
+						"type": "string",
+						"description": "%compose.taskDefinition.service.description%"
+					},
+					"args": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						},
+						"description": "%compose.taskDefinition.args.description%"
+					}
+				},
+				"when": "shellExecutionSupported"
+			},
+			{
+				"type": "helm",
+				"required": [
+					"chart",
+					"command"
+				],
+				"properties": {
+					"chart": {
+						"type": "string",
+						"description": "%helm.taskDefinition.chart.description%"
+					},
+					"command": {
+						"type": "string",
+						"enum": [
+							"lint",
+							"template",
+							"dependency-update"
+						],
+						"description": "%helm.taskDefinition.command.description%"
+					}
+				},
+				"when": "shellExecutionSupported"
+			},
+			{
+				"type": "typeorm",
+				"required": [
+					"project",
+					"command"
+				],
+				"properties": {
+					"project": {
+						"type": "string",
+						"description": "%typeorm.taskDefinition.project.description%"
+					},
+					"command": {
+						"type": "string",
+						"enum": [
+							"show",
+							"run",
+							"revert",
+							"generate"
+						],
+						"description": "%typeorm.taskDefinition.command.description%"
+					},
+					"name": {
+						"type": "string",
+						"description": "%typeorm.taskDefinition.name.description%"
+					}
+				},
+				"when": "shellExecutionSupported"
+			},
+			{
+				"type": "jenkins",
+				"required": [
+					"job"
+				],
+				"properties": {
+					"job": {
+						"type": "string",
+						"description": "%jenkins.taskDefinition.job.description%"
+					}
+				},
+				"when": "shellExecutionSupported"
+			}
+		],
+		"problemMatchers": [
+			{
+				"name": "nest-watch",
+				"label": "%problemMatcher.nestWatch.label%",
+				"owner": "typescript",
+				"source": "ts",
+				"applyTo": "closedDocuments",
+				"fileLocation": [
+					"relative",
+					"${cwd}"
+				],
+				"pattern": "$tsc",
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "(File change detected|Starting compilation|Rebuilding|compiling\\.\\.\\.)",
+					"endsPattern": "(Nest application successfully started|Application is running on|Found \\d+ errors?\\. Watching for file changes|compiled (successfully|with \\d+ errors?))"
+				}
+			},
+			{
+				"name": "angular-serve",
+				"label": "%problemMatcher.angularServe.label%",
+				"owner": "typescript",
+				"source": "ts",
+				"applyTo": "closedDocuments",
+				"fileLocation": [
+					"relative",
+					"${cwd}"
+				],
+				"pattern": "$tsc",
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "(Changes detected\\. Rebuilding|Building\\.\\.\\.|Generating browser application bundles)",
+					"endsPattern": "(Application bundle generation (complete|failed)|Compiled successfully|Failed to compile|Watch mode enabled)"
+				}
+			}
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/925-oss/vscode.git"
+	}
+}

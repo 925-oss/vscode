@@ -1,42 +1,49 @@
 {
-	"nameShort": "Code - OSS",
-	"nameLong": "Code - OSS",
-	"applicationName": "code-oss",
-	"dataFolderName": ".vscode-oss",
-	"sharedDataFolderName": ".vscode-oss-shared",
-	"win32MutexName": "vscodeoss",
+	"nameShort": "Quenchlight",
+	"nameLong": "Quenchlight",
+	"applicationName": "quenchlight",
+	"dataFolderName": ".quenchlight",
+	"sharedDataFolderName": ".quenchlight-shared",
+	"win32MutexName": "quenchlight",
 	"licenseName": "MIT",
-	"licenseUrl": "https://github.com/microsoft/vscode/blob/main/LICENSE.txt",
-	"serverLicenseUrl": "https://github.com/microsoft/vscode/blob/main/LICENSE.txt",
+	"licenseUrl": "https://github.com/925-oss/vscode/blob/main/LICENSE.txt",
+	"serverLicenseUrl": "https://github.com/925-oss/vscode/blob/main/LICENSE.txt",
 	"serverGreeting": [],
 	"serverLicense": [],
 	"serverLicensePrompt": "",
-	"serverApplicationName": "code-server-oss",
-	"serverDataFolderName": ".vscode-server-oss",
-	"tunnelApplicationName": "code-tunnel-oss",
-	"win32DirName": "Microsoft Code OSS",
-	"win32NameVersion": "Microsoft Code OSS",
-	"win32RegValueName": "CodeOSS",
+	"serverApplicationName": "quenchlight-server",
+	"serverDataFolderName": ".quenchlight-server",
+	"tunnelApplicationName": "quenchlight-tunnel",
+	"win32DirName": "Quenchlight",
+	"win32NameVersion": "Quenchlight",
+	"win32RegValueName": "Quenchlight",
 	"win32x64AppId": "{{D77B7E06-80BA-4137-BCF4-654B95CCEBC5}",
 	"win32arm64AppId": "{{D1ACE434-89C5-48D1-88D3-E2991DF85475}",
 	"win32x64UserAppId": "{{CC6B787D-37A0-49E8-AE24-8559A032BE0C}",
 	"win32arm64UserAppId": "{{3AEBF0C8-F733-4AD4-BADE-FDB816D53D7B}",
-	"win32AppUserModelId": "Microsoft.CodeOSS",
-	"win32ShellNameShort": "C&ode - OSS",
-	"win32TunnelServiceMutex": "vscodeoss-tunnelservice",
-	"win32TunnelMutex": "vscodeoss-tunnel",
-	"darwinBundleIdentifier": "com.visualstudio.code.oss",
+	"win32AppUserModelId": "Local.Quenchlight",
+	"win32ShellNameShort": "&Quenchlight",
+	"win32TunnelServiceMutex": "quenchlight-tunnelservice",
+	"win32TunnelMutex": "quenchlight-tunnel",
+	"darwinBundleIdentifier": "com.local.quenchlight",
 	"darwinProfileUUID": "47827DD9-4734-49A0-AF80-7E19B11495CC",
 	"darwinProfilePayloadUUID": "CF808BE7-53F3-46C6-A7E2-7EDB98A5E959",
-	"linuxDesktopName": "com.visualstudio.CodeOSS",
-	"linuxIconName": "code-oss",
+	"linuxDesktopName": "com.local.Quenchlight",
+	"linuxIconName": "quenchlight",
 	"licenseFileName": "LICENSE.txt",
-	"reportIssueUrl": "https://github.com/microsoft/vscode/issues/new",
+	"reportIssueUrl": "https://github.com/925-oss/vscode/issues/new",
 	"nodejsArtifactFeed": "",
 	"electronArtifactFeed": "",
-	"urlProtocol": "code-oss",
+	"urlProtocol": "quenchlight",
 	"agentsTelemetryAppName": "agents",
 	"webviewContentExternalBaseUrlTemplate": "https://{{uuid}}.vscode-cdn.net/insider/ef65ac1ba57f57f2a3961bfe94aa20481caca4c6/out/vs/workbench/contrib/webview/browser/pre/",
+	"extensionsGallery": {
+		"serviceUrl": "https://open-vsx.org/vscode/gallery",
+		"controlUrl": "https://raw.githubusercontent.com/EclipseFdn/publish-extensions/refs/heads/master/extension-control/extensions.json",
+		"extensionUrlTemplate": "https://open-vsx.org/vscode/gallery/{publisher}/{name}/latest",
+		"resourceUrlTemplate": "https://open-vsx.org/vscode/unpkg/{publisher}/{name}/{version}/{path}",
+		"nlsBaseUrl": ""
+	},
 	"builtInExtensions": [
 		{
 			"name": "ms-vscode.js-debug-companion",
@@ -85,6 +92,310 @@
 				},
 				"publisherDisplayName": "Microsoft"
 			}
+		},
+		{
+			"name": "Angular.ng-template",
+			"version": "22.2.0",
+			"sha256": "13f97986133a7f5e0aec7ffc83ed3b8ff642f6cf09611324343b7172ed9eca36",
+			"repo": "https://github.com/angular/angular",
+			"metadata": {
+				"id": "a92d457e-6f3f-4167-8087-1a54e1b6e00e",
+				"publisherId": {
+					"publisherId": "5a69cff0-bd3b-4074-999f-4952fc2b037a",
+					"publisherName": "Angular",
+					"displayName": "Angular",
+					"flags": ""
+				},
+				"publisherDisplayName": "Angular"
+			}
+		},
+		{
+			"name": "nrwl.angular-console",
+			"version": "18.104.0",
+			"sha256": "3d38fb33857a3a6b1b62be9bdf920f05f06be1bd793977de1352c1062758d04d",
+			"repo": "https://github.com/nrwl/nx-console",
+			"metadata": {
+				"id": "d10af6bf-270f-4cf0-b94b-1bea4bda1e2e",
+				"publisherId": {
+					"publisherId": "e50033e1-c27a-40b5-b391-f203d462148c",
+					"publisherName": "nrwl",
+					"displayName": "nrwl",
+					"flags": ""
+				},
+				"publisherDisplayName": "nrwl"
+			}
+		},
+		{
+			"name": "dbaeumer.vscode-eslint",
+			"version": "3.0.34",
+			"sha256": "ca5334d46f6a39079e751ef4601bfc9f86bc3a46483e87291ec609239d161308",
+			"repo": "https://github.com/microsoft/vscode-eslint",
+			"metadata": {
+				"id": "583b2b34-2c1e-4634-8c0b-0b82e283ea3a",
+				"publisherId": {
+					"publisherId": "29859a75-d81b-4f0e-8578-2c80ecee6f99",
+					"publisherName": "dbaeumer",
+					"displayName": "dbaeumer",
+					"flags": ""
+				},
+				"publisherDisplayName": "dbaeumer"
+			}
+		},
+		{
+			"name": "esbenp.prettier-vscode",
+			"version": "12.4.0",
+			"sha256": "fb730ea4306d09cdc0a3aaa9e9baae28058cc97a4fbfce8b056b377a0639a9fe",
+			"repo": "https://github.com/prettier/prettier-vscode",
+			"metadata": {
+				"id": "96fa4707-6983-4489-b7c5-d5ffdfdcce90",
+				"publisherId": {
+					"publisherId": "d16f4e39-2ffb-44e3-9c0d-79d873570e3a",
+					"publisherName": "esbenp",
+					"displayName": "Prettier",
+					"flags": ""
+				},
+				"publisherDisplayName": "Prettier"
+			}
+		},
+		{
+			"name": "oxc.oxc-vscode",
+			"version": "1.64.1",
+			"sha256": "71ee8da00a2d4c5d6ee6f17387c4a59b383a3c865c8003eb31ce88b07ecc85d0",
+			"repo": "https://github.com/oxc-project/oxc-vscode",
+			"metadata": {
+				"id": "1303f9b3-746c-42de-869c-5f72364302f5",
+				"publisherId": {
+					"publisherId": "8985e1a2-1cad-4f0c-bb18-5fe71c8ebb68",
+					"publisherName": "oxc",
+					"displayName": "oxc",
+					"flags": ""
+				},
+				"publisherDisplayName": "oxc"
+			}
+		},
+		{
+			"name": "vitest.explorer",
+			"version": "1.52.2",
+			"sha256": "fcae41a6f584b7b0b19b84e52235082f8af12acfe8589930687161733003d331",
+			"repo": "https://github.com/vitest-dev/vscode",
+			"metadata": {
+				"id": "ab3534a7-eaae-4f75-9735-62bfd758b220",
+				"publisherId": {
+					"publisherId": "b2d5dee9-71a4-4649-b9ca-610bade91331",
+					"publisherName": "vitest",
+					"displayName": "vitest",
+					"flags": ""
+				},
+				"publisherDisplayName": "vitest"
+			}
+		},
+		{
+			"name": "firsttris.vscode-jest-runner",
+			"version": "0.4.151",
+			"sha256": "e6bd5344f7f438daff72c472c25432d145798dfd5aaec1ead04261d51471d4f7",
+			"repo": "https://github.com/firsttris/vscode-jest-runner",
+			"metadata": {
+				"id": "13cd6cd6-3da6-4eb8-8d81-b47e6e710e59",
+				"publisherId": {
+					"publisherId": "d3042740-ad00-46f8-87c9-ee28ad76da0e",
+					"publisherName": "firsttris",
+					"displayName": "firsttris",
+					"flags": ""
+				},
+				"publisherDisplayName": "firsttris"
+			}
+		},
+		{
+			"name": "CucumberOpen.cucumber-official",
+			"version": "1.12.1",
+			"sha256": "49b3de8ee5033404f623fec49f6376106245b5bac35ce2d895f4122b2a4bf67d",
+			"repo": "https://github.com/cucumber/vscode",
+			"metadata": {
+				"id": "58a033a2-4aec-4019-9a58-d0b2bc632c80",
+				"publisherId": {
+					"publisherId": "1f54e298-cc6f-4adf-8f07-216f23ae8118",
+					"publisherName": "CucumberOpen",
+					"displayName": "CucumberOpen",
+					"flags": ""
+				},
+				"publisherDisplayName": "CucumberOpen"
+			}
+		},
+		{
+			"name": "nefrob.vscode-just-syntax",
+			"version": "0.10.2",
+			"sha256": "17b1fd7f6e138c1dc9b562d52026304538f16be1933a960dec8cd2954d5ab9da",
+			"repo": "https://github.com/nefrob/vscode-just",
+			"metadata": {
+				"id": "4d059c6e-aaea-42e3-97f5-f4fd35b70d3d",
+				"publisherId": {
+					"publisherId": "8f57d1e0-1e7b-4637-9542-855528d4cdc0",
+					"publisherName": "nefrob",
+					"displayName": "nefrob",
+					"flags": ""
+				},
+				"publisherDisplayName": "nefrob"
+			}
+		},
+		{
+			"name": "redhat.vscode-yaml",
+			"version": "2.0.0",
+			"sha256": "4bba62ccda962b720dcb0829e85cf4109c94e86653dcd39fd7500c3687ad8c60",
+			"repo": "https://github.com/redhat-developer/vscode-yaml",
+			"metadata": {
+				"id": "2061917f-f76a-458a-8da9-f162de22b97e",
+				"publisherId": {
+					"publisherId": "1deab481-4801-4170-8a64-801999f5ee73",
+					"publisherName": "redhat",
+					"displayName": "Red Hat",
+					"flags": ""
+				},
+				"publisherDisplayName": "Red Hat"
+			}
+		},
+		{
+			"name": "mtxr.sqltools",
+			"version": "0.28.6",
+			"sha256": "4a95451fe41ff6da67366e09e73ddf3a15b3cd83f42e49c3366f3c2473319085",
+			"repo": "https://github.com/mtxr/vscode-sqltools",
+			"metadata": {
+				"id": "6a2bbab0-d8f0-43fa-9b26-e6a3b7892a0b",
+				"publisherId": {
+					"publisherId": "952fc94a-735a-4caa-92ce-e1011fbc9780",
+					"publisherName": "mtxr",
+					"displayName": "mtxr",
+					"flags": ""
+				},
+				"publisherDisplayName": "mtxr"
+			}
+		},
+		{
+			"name": "mtxr.sqltools-driver-pg",
+			"version": "0.5.8",
+			"sha256": "1a3b7c63e89baf8df591b0e8f382084da71ddce30b07e44ca2aace6f3ed43f06",
+			"repo": "https://github.com/mtxr/vscode-sqltools",
+			"metadata": {
+				"id": "ff850146-c38e-4afe-8a34-705074ae16e2",
+				"publisherId": {
+					"publisherId": "952fc94a-735a-4caa-92ce-e1011fbc9780",
+					"publisherName": "mtxr",
+					"displayName": "mtxr",
+					"flags": ""
+				},
+				"publisherDisplayName": "mtxr"
+			}
+		},
+		{
+			"name": "swiftlang.swift-vscode",
+			"version": "2.18.0",
+			"sha256": "1b245da8f929902c8ef03f0d65eb3cffae5a6f93bb1d7e39317a2de79973054d",
+			"repo": "https://github.com/swiftlang/vscode-swift",
+			"metadata": {
+				"id": "a262b033-b635-48e5-a110-0882eedcc504",
+				"publisherId": {
+					"publisherId": "f2b4161e-d490-4b8e-8927-52822c119908",
+					"publisherName": "swiftlang",
+					"displayName": "swiftlang",
+					"flags": ""
+				},
+				"publisherDisplayName": "swiftlang"
+			}
+		},
+		{
+			"name": "llvm-vs-code-extensions.lldb-dap",
+			"version": "0.4.1",
+			"sha256": "8ddacbe5f5f82176ea63019b2121e52f27ff3c31ff7f734f9aa653c9e07cf071",
+			"repo": "https://github.com/llvm/llvm-project",
+			"metadata": {
+				"id": "8f0e51b3-cc69-4cf9-abab-97289d29d6de",
+				"publisherId": {
+					"publisherId": "0f47d2a3-0735-453c-a89e-dc4193d6b6fa",
+					"publisherName": "llvm-vs-code-extensions",
+					"displayName": "llvm-vs-code-extensions",
+					"flags": ""
+				},
+				"publisherDisplayName": "llvm-vs-code-extensions"
+			}
+		},
+		{
+			"name": "usernamehw.errorlens",
+			"version": "3.30.0",
+			"sha256": "b236000f50998b992289b2d354dcbd4fc99b64c75850eebcbb986f7a210c34f4",
+			"repo": "https://github.com/usernamehw/vscode-error-lens",
+			"metadata": {
+				"id": "9d8c32ab-354c-4daf-a9bf-20b633734435",
+				"publisherId": {
+					"publisherId": "151820df-5dc5-4c97-8751-eb84643203fa",
+					"publisherName": "usernamehw",
+					"displayName": "usernamehw",
+					"flags": ""
+				},
+				"publisherDisplayName": "usernamehw"
+			}
+		},
+		{
+			"name": "yoavbls.pretty-ts-errors",
+			"version": "0.8.7",
+			"sha256": "fcb73d075f09c593dd3429223c8d6b95b91f608bc2ab411c3c6c90946c1a4127",
+			"repo": "https://github.com/yoavbls/pretty-ts-errors",
+			"metadata": {
+				"id": "1e149c89-8f97-447e-863d-1146f0ad1b70",
+				"publisherId": {
+					"publisherId": "0939a3c0-6896-4249-bfa3-4ff58ebaccd0",
+					"publisherName": "yoavbls",
+					"displayName": "YoavBls",
+					"flags": ""
+				},
+				"publisherDisplayName": "YoavBls"
+			}
+		},
+		{
+			"name": "EditorConfig.EditorConfig",
+			"version": "0.18.2",
+			"sha256": "cbc0370ff204bc16d84a3ee6830536fc04355856fa0e895ab064e1a03cfcb84a",
+			"repo": "https://github.com/editorconfig/editorconfig-vscode",
+			"metadata": {
+				"id": "f60a60a6-95ba-42d4-b41c-3d24c1b89588",
+				"publisherId": {
+					"publisherId": "1ed869e4-8588-4af4-a51e-9c1c86b034b9",
+					"publisherName": "EditorConfig",
+					"displayName": "EditorConfig",
+					"flags": ""
+				},
+				"publisherDisplayName": "EditorConfig"
+			}
+		},
+		{
+			"name": "miguelsolorio.symbols",
+			"version": "0.0.26",
+			"sha256": "4607d914804c262ed8a722f3d024befe33174f777ed64fb2dbaf4f8bfaec49a3",
+			"repo": "https://github.com/miguelsolorio/vscode-symbols",
+			"metadata": {
+				"id": "cb54c3b9-1c64-4c4a-8b5a-887270ffe4b6",
+				"publisherId": {
+					"publisherId": "f1903af7-ceb4-410f-b269-cd514b33bea2",
+					"publisherName": "miguelsolorio",
+					"displayName": "miguelsolorio",
+					"flags": ""
+				},
+				"publisherDisplayName": "miguelsolorio"
+			}
+		},
+		{
+			"name": "oven.bun-vscode",
+			"version": "0.0.32",
+			"sha256": "86eb349bbd821b69acb9f8e117adc659978829eda99ddc08a53dc72d43a14702",
+			"repo": "https://github.com/oven-sh/bun",
+			"metadata": {
+				"id": "2c58c6a8-c23c-4913-899e-17c90b15274e",
+				"publisherId": {
+					"publisherId": "b54c1447-f7ba-421e-be69-48e03c08f0d9",
+					"publisherName": "oven",
+					"displayName": "Bun",
+					"flags": ""
+				},
+				"publisherDisplayName": "Bun"
+			}
 		}
 	],
 	"defaultChatAgent": {
@@ -117,10 +428,6 @@
 			"apple": {
 				"id": "apple",
 				"name": "Apple"
-			},
-			"microsoft": {
-				"id": "microsoft",
-				"name": "Microsoft"
 			}
 		},
 		"providerExtensionId": "vscode.github-authentication",
@@ -155,17 +462,6 @@
 		"mcpRegistryDataUrl": "https://api.github.com/copilot/mcp_registry",
 		"mcpConnectorsUrl": "https://api.github.com/copilot-connectors/api/v1",
 		"managedSettingsUrl": "https://api.github.com/copilot_internal/managed_settings"
-	},
-	"trustedExtensionAuthAccess": {
-		"github": [
-			"GitHub.copilot-chat"
-		],
-		"github-enterprise": [
-			"GitHub.copilot-chat"
-		],
-		"microsoft": [
-			"vscode.github-authentication"
-		]
 	},
 	"onboardingKeymaps": [
 		{
@@ -206,6 +502,12 @@
 	],
 	"onboardingThemes": [
 		{
+			"id": "quenchlight",
+			"label": "Quenchlight",
+			"themeId": "Quenchlight",
+			"type": "dark"
+		},
+		{
 			"id": "dark-2026",
 			"label": "Dark 2026",
 			"themeId": "Dark 2026",
@@ -243,8 +545,24 @@
 		}
 	],
 	"builtInExtensionsEnabledWithAutoUpdates": [
-		"GitHub.copilot-chat"
+		"Angular.ng-template",
+		"nrwl.angular-console",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"oxc.oxc-vscode",
+		"vitest.explorer",
+		"firsttris.vscode-jest-runner",
+		"CucumberOpen.cucumber-official",
+		"nefrob.vscode-just-syntax",
+		"redhat.vscode-yaml",
+		"mtxr.sqltools",
+		"mtxr.sqltools-driver-pg",
+		"swiftlang.swift-vscode",
+		"llvm-vs-code-extensions.lldb-dap",
+		"usernamehw.errorlens",
+		"yoavbls.pretty-ts-errors",
+		"EditorConfig.EditorConfig",
+		"miguelsolorio.symbols"
 	],
-	"sessionsWindowAllowedExtensions": [],
-	"voiceWsUrl": "wss://falcon-caas.mai.microsoft.com/voice-code/api/v1/realtime/voice"
+	"sessionsWindowAllowedExtensions": []
 }

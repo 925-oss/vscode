@@ -27,6 +27,7 @@ export const workspaceMembers = [
 	'extensions/css-language-features/server',
 	'extensions/debug-auto-launch',
 	'extensions/debug-server-ready',
+	'extensions/dev-tasks',
 	'extensions/emmet',
 	'extensions/extension-editing',
 	'extensions/git',
