@@ -1,15 +1,9 @@
-import './media/quenchlight.css';
-import { localize, localize2 } from '../../../../nls.js';
-import { Action2, registerAction2 } from '../../../../platform/actions/common/actions.js';
+import { localize } from '../../../../nls.js';
 import { ConfigurationScope, Extensions as ConfigurationExtensions, IConfigurationRegistry } from '../../../../platform/configuration/common/configurationRegistry.js';
-import { ServicesAccessor } from '../../../../platform/instantiation/common/instantiation.js';
 import { Registry } from '../../../../platform/registry/common/platform.js';
-import { IStorageService, StorageScope, StorageTarget } from '../../../../platform/storage/common/storage.js';
 import { registerWorkbenchContribution2, WorkbenchPhase } from '../../../common/contributions.js';
 import { QuenchlightAngularGateContribution } from './quenchlightAngularGate.js';
-import { QuenchlightGlowContribution } from './quenchlightGlow.js';
 import { QuenchlightSettings } from './quenchlightSettings.js';
-import { QuenchlightTemperContribution, STRIKES_STORAGE_KEY } from './quenchlightTemper.js';
 
 // -- Settings ------------------------------------------------------------------
 
@@ -21,24 +15,6 @@ configurationRegistry.registerConfiguration({
 	title: localize('quenchlightConfigurationTitle', "Quenchlight"),
 	type: 'object',
 	properties: {
-		[QuenchlightSettings.GlowEnabled]: {
-			type: 'boolean',
-			default: true,
-			scope: ConfigurationScope.APPLICATION,
-			description: localize('quenchlight.glow.enabled', "Show the forge glow: a glowing cursor, heated current line, glowing active tab and a heat shimmer on the status bar.")
-		},
-		[QuenchlightSettings.FlashOnSave]: {
-			type: 'boolean',
-			default: true,
-			scope: ConfigurationScope.APPLICATION,
-			description: localize('quenchlight.glow.flashOnSave', "Flash the editor with forge heat when a file is saved.")
-		},
-		[QuenchlightSettings.TemperEnabled]: {
-			type: 'boolean',
-			default: true,
-			scope: ConfigurationScope.APPLICATION,
-			description: localize('quenchlight.temper.enabled', "Show your temper in the status bar. Every keystroke is a hammer strike, and the steel takes the next temper color at milestones.")
-		},
 		[QuenchlightSettings.AngularOnlyInAngularWorkspaces]: {
 			type: 'boolean',
 			default: true,
@@ -93,9 +69,6 @@ configurationRegistry.registerDefaultConfigurations([{
 		'editor.inlayHints.enabled': 'offUnlessPressed',
 		'editor.padding.top': 16,
 		'editor.cursorStyle': 'block',
-		'editor.cursorBlinking': 'expand',
-		'editor.cursorSmoothCaretAnimation': 'on',
-		'editor.smoothScrolling': true,
 		'editor.semanticHighlighting.enabled': true,
 
 		'terminal.integrated.fontFamily': '\'JetBrainsMono Nerd Font\'',
@@ -159,23 +132,4 @@ configurationRegistry.registerDefaultConfigurations([{
 
 // -- Contributions -------------------------------------------------------------
 
-registerWorkbenchContribution2(QuenchlightGlowContribution.ID, QuenchlightGlowContribution, WorkbenchPhase.AfterRestored);
-registerWorkbenchContribution2(QuenchlightTemperContribution.ID, QuenchlightTemperContribution, WorkbenchPhase.AfterRestored);
 registerWorkbenchContribution2(QuenchlightAngularGateContribution.ID, QuenchlightAngularGateContribution, WorkbenchPhase.AfterRestored);
-
-// -- Commands ------------------------------------------------------------------
-
-registerAction2(class ResetTemperAction extends Action2 {
-	constructor() {
-		super({
-			id: 'quenchlight.resetTemper',
-			title: localize2('quenchlight.resetTemper', 'Reset Temper'),
-			category: localize2('quenchlight.category', 'Quenchlight'),
-			f1: true
-		});
-	}
-
-	override run(accessor: ServicesAccessor): void {
-		accessor.get(IStorageService).store(STRIKES_STORAGE_KEY, 0, StorageScope.APPLICATION, StorageTarget.MACHINE);
-	}
-});
