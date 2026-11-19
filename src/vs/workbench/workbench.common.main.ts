@@ -504,4 +504,7 @@ import './contrib/editTelemetry/browser/editTelemetry.contribution.js';
 // Opener
 import './contrib/opener/browser/opener.contribution.js';
 
+// Saiyan (aura effects, power level, default look)
+import './contrib/saiyan/browser/saiyan.contribution.js';
+
 //#endregion

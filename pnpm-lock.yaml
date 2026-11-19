@@ -1242,6 +1242,12 @@ importers:
         specifier: 24.x
         version: 24.12.4
 
+  extensions/dev-tasks:
+    devDependencies:
+      '@types/node':
+        specifier: 24.x
+        version: 24.13.2
+
   extensions/emmet:
     dependencies:
       '@emmetio/css-parser':

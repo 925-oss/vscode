@@ -1,0 +1,266 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Saiyan Code contributors. All rights reserved.
+ *  Licensed under the MIT License.
+ *--------------------------------------------------------------------------------------------*/
+
+/*
+ * Saiyan aura effects. Everything is scoped to `.saiyan-aura` (setting
+ * `saiyan.aura.enabled`) and every animation additionally to
+ * `.monaco-enable-motion`, so "reduce motion" leaves only static glows.
+ *
+ * --saiyan-ki: the energy colour (cursor, glows). Follows the theme's cursor.
+ * --saiyan-gi: the accent colour (active tab, current line). Follows the theme's active tab border.
+ */
+
+.monaco-workbench.saiyan-aura {
+	--saiyan-ki: var(--vscode-editorCursor-foreground, #ffd23f);
+	--saiyan-gi: var(--vscode-tab-activeBorderTop, #ff8c1a);
+}
+
+.monaco-workbench.saiyan-aura.saiyan-form-4 {
+	--saiyan-ki: #e3e9ff;
+	--saiyan-gi: #9fb4ff;
+}
+
+/* ── Cursor: a charged ki spark ─────────────────────────────────────────── */
+
+.monaco-workbench.saiyan-aura .monaco-editor .cursors-layer .cursor {
+	box-shadow:
+		0 0 4px 0 var(--saiyan-ki),
+		0 0 12px 1px color-mix(in srgb, var(--saiyan-ki) 55%, transparent),
+		0 0 24px 4px color-mix(in srgb, var(--saiyan-gi) 25%, transparent);
+	border-radius: 1px;
+}
+
+/* ── Current line: energy rising from the gutter ────────────────────────── */
+
+.monaco-workbench.saiyan-aura .monaco-editor .view-overlays .current-line {
+	background-image: linear-gradient(90deg,
+		color-mix(in srgb, var(--saiyan-gi) 16%, transparent) 0%,
+		color-mix(in srgb, var(--saiyan-gi) 5%, transparent) 35%,
+		transparent 75%);
+}
+
+.monaco-workbench.saiyan-aura .monaco-editor .margin-view-overlays .current-line-margin {
+	box-shadow: inset 2px 0 0 var(--saiyan-gi);
+}
+
+/* ── Brackets & find matches glow ───────────────────────────────────────── */
+
+.monaco-workbench.saiyan-aura .monaco-editor .bracket-match {
+	box-shadow: 0 0 6px 0 color-mix(in srgb, var(--saiyan-ki) 70%, transparent);
+	border-radius: 2px;
+}
+
+.monaco-workbench.saiyan-aura .monaco-editor .currentFindMatch {
+	box-shadow: 0 0 10px 1px color-mix(in srgb, var(--saiyan-ki) 70%, transparent);
+	border-radius: 2px;
+}
+
+/* ── Active tab / single-tab title glows ────────────────────────────────── */
+
+.monaco-workbench.saiyan-aura .part.editor .tabs-container > .tab.active {
+	box-shadow: 0 -10px 18px -10px var(--saiyan-gi) inset;
+}
+
+.monaco-workbench.saiyan-aura .part.editor .tabs-container > .tab.active .label-name,
+.monaco-workbench.saiyan-aura .part.editor .editor-group-container.active .title .title-label .label-name {
+	text-shadow: 0 0 10px color-mix(in srgb, var(--saiyan-ki) 65%, transparent);
+}
+
+/* ── Explorer & lists: selected row has a ki edge ───────────────────────── */
+
+.monaco-workbench.saiyan-aura .monaco-list:focus .monaco-list-row.selected,
+.monaco-workbench.saiyan-aura .monaco-list .monaco-list-row.selected.focused {
+	box-shadow: inset 2px 0 0 var(--saiyan-gi);
+}
+
+/* ── Command palette & widgets float in an aura ─────────────────────────── */
+
+.monaco-workbench.saiyan-aura .quick-input-widget,
+.monaco-workbench.saiyan-aura .monaco-editor .suggest-widget,
+.monaco-workbench.saiyan-aura .monaco-editor .find-widget {
+	box-shadow:
+		0 0 0 1px color-mix(in srgb, var(--saiyan-gi) 45%, transparent),
+		0 10px 40px -6px color-mix(in srgb, var(--saiyan-gi) 35%, transparent),
+		0 0 70px -20px color-mix(in srgb, var(--saiyan-ki) 40%, transparent) !important;
+}
+
+/* ── Status bar: shimmer, and colour by transformation ──────────────────── */
+
+.monaco-workbench.saiyan-aura .part.statusbar {
+	background-image: linear-gradient(100deg,
+		transparent 35%,
+		rgba(255, 250, 220, 0.28) 48%,
+		rgba(255, 255, 255, 0.45) 50%,
+		rgba(255, 250, 220, 0.28) 52%,
+		transparent 65%);
+	background-size: 300% 100%;
+	background-position: 100% 0;
+}
+
+.monaco-workbench.saiyan-aura.monaco-enable-motion .part.statusbar {
+	animation: saiyan-shimmer 7s linear infinite;
+}
+
+.monaco-workbench.saiyan-aura.saiyan-form-1 .part.statusbar,
+.monaco-workbench.saiyan-aura.saiyan-form-2 .part.statusbar {
+	background-color: #ffd23f !important;
+	color: #2a1a00 !important;
+}
+
+.monaco-workbench.saiyan-aura.saiyan-form-3 .part.statusbar {
+	background-color: #ffbf1f !important;
+	color: #2a1a00 !important;
+}
+
+.monaco-workbench.saiyan-aura.saiyan-form-4 .part.statusbar {
+	background-color: #c9d3f5 !important;
+	color: #0c0f26 !important;
+	background-image: linear-gradient(100deg, transparent 35%, rgba(255, 255, 255, 0.7) 50%, transparent 65%);
+}
+
+/* Super Saiyan 2: lightning crackles across the status bar. */
+.monaco-workbench.saiyan-aura.monaco-enable-motion.saiyan-form-2 .part.statusbar::after,
+.monaco-workbench.saiyan-aura.monaco-enable-motion.saiyan-form-3 .part.statusbar::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background: linear-gradient(90deg, transparent 0 20%, rgba(92, 225, 255, 0.85) 20.3% 20.6%, transparent 21% 62%, rgba(92, 225, 255, 0.85) 62.2% 62.5%, transparent 63%);
+	opacity: 0;
+	animation: saiyan-crackle 3.1s steps(1) infinite;
+}
+
+/* ── Power level item ───────────────────────────────────────────────────── */
+
+.monaco-workbench .part.statusbar .statusbar-item:has(> .saiyan-power-aura) {
+	position: relative;
+}
+
+.monaco-workbench .part.statusbar .statusbar-item:has(> .saiyan-power-aura) > a {
+	position: relative;
+	z-index: 1;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: 0.02em;
+}
+
+.monaco-workbench .part.statusbar .saiyan-power-aura {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	border-radius: 999px;
+	opacity: 0;
+}
+
+/* Charging: the number glows white-hot and an aura pulses behind it. */
+.monaco-workbench .part.statusbar .statusbar-item:has(> .saiyan-power-aura.saiyan-charging) > a {
+	text-shadow: 0 0 6px #fff, 0 0 12px #fff3b0;
+}
+
+.monaco-workbench .part.statusbar .saiyan-power-aura.saiyan-charging {
+	opacity: 1;
+	background: radial-gradient(ellipse at 50% 60%, rgba(255, 255, 255, 0.55), rgba(255, 210, 63, 0.35) 45%, transparent 75%);
+}
+
+.monaco-workbench.monaco-enable-motion .part.statusbar .statusbar-item:has(> .saiyan-power-aura.saiyan-charging) > a {
+	animation: saiyan-charge 0.45s ease-in-out infinite alternate;
+}
+
+.monaco-workbench.monaco-enable-motion .part.statusbar .saiyan-power-aura.saiyan-charging {
+	animation: saiyan-aura-pulse 0.45s ease-in-out infinite alternate;
+}
+
+/* Transformation: the number pops and a shockwave ring expands. */
+.monaco-workbench.monaco-enable-motion .part.statusbar .statusbar-item:has(> .saiyan-power-aura.saiyan-burst) > a {
+	animation: saiyan-burst 2.2s ease-out;
+}
+
+.monaco-workbench.monaco-enable-motion .part.statusbar .saiyan-power-aura.saiyan-burst {
+	opacity: 1;
+	box-shadow: 0 0 0 2px #fff, 0 0 18px 6px #ffd23f;
+	animation: saiyan-shockwave 2.2s ease-out forwards;
+}
+
+/* ── Save: a burst of gold energy over the editor ───────────────────────── */
+
+.monaco-workbench.saiyan-aura.monaco-enable-motion .monaco-editor.saiyan-save-flash::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 100;
+	pointer-events: none;
+	box-shadow:
+		inset 0 0 0 2px var(--saiyan-ki),
+		inset 0 0 90px 10px color-mix(in srgb, var(--saiyan-ki) 35%, transparent);
+	animation: saiyan-save-flash 750ms ease-out forwards;
+}
+
+/* ── Transformation: the whole window flares ────────────────────────────── */
+
+.monaco-workbench.saiyan-aura.monaco-enable-motion.saiyan-transform::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: 10000;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 80% 70% at 50% 110%, color-mix(in srgb, var(--saiyan-ki) 65%, transparent), transparent 70%),
+		radial-gradient(circle at 50% 50%, transparent 40%, color-mix(in srgb, var(--saiyan-gi) 30%, transparent) 100%);
+	animation: saiyan-transform 1.6s ease-out forwards;
+}
+
+/* ── Keyframes ──────────────────────────────────────────────────────────── */
+
+@keyframes saiyan-shimmer {
+	0% { background-position: 100% 0; }
+	45%, 100% { background-position: -50% 0; }
+}
+
+@keyframes saiyan-crackle {
+	0%, 100% { opacity: 0; }
+	12% { opacity: 1; }
+	14% { opacity: 0; }
+	16% { opacity: 0.8; transform: scaleX(-1); }
+	18% { opacity: 0; transform: none; }
+	71% { opacity: 1; }
+	73% { opacity: 0; }
+}
+
+@keyframes saiyan-charge {
+	from { text-shadow: 0 0 4px #fff, 0 0 8px #fff3b0; }
+	to { text-shadow: 0 0 8px #fff, 0 0 18px #ffd23f, 0 0 26px #ff8c1a; }
+}
+
+@keyframes saiyan-aura-pulse {
+	from { transform: scale(0.9); opacity: 0.6; }
+	to { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes saiyan-shockwave {
+	0% { transform: scale(0.6); opacity: 1; }
+	60% { opacity: 0.6; }
+	100% { transform: scale(2.6); opacity: 0; }
+}
+
+@keyframes saiyan-burst {
+	0% { transform: scale(1); filter: brightness(1); }
+	8% { transform: scale(1.35); filter: brightness(1.8); }
+	25% { transform: scale(1.1); filter: brightness(1.4); }
+	100% { transform: scale(1); filter: brightness(1); }
+}
+
+@keyframes saiyan-save-flash {
+	0% { opacity: 0; }
+	15% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@keyframes saiyan-transform {
+	0% { opacity: 0; }
+	10% { opacity: 1; }
+	30% { opacity: 0.6; }
+	40% { opacity: 1; }
+	100% { opacity: 0; }
+}

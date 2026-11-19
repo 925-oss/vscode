@@ -213,6 +213,8 @@ export const copyrightFilter = Object.freeze<string[]>([
 	'!resources/linux/snap/snapcraft.yaml',
 	'!resources/win32/bin/code.js',
 	'!resources/completions/**',
+	'!src/vs/workbench/contrib/saiyan/**', // Saiyan Code's own files carry their own copyright header
+	'!extensions/dev-tasks/**',
 	'!extensions/configuration-editing/build/inline-allOf.ts',
 	'!extensions/markdown-language-features/media/highlight.css',
 	'!extensions/markdown-math/notebook-out/**',

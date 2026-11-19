@@ -1,0 +1,26 @@
+{
+  "name": "theme-saiyan-aura",
+  "displayName": "%displayName%",
+  "description": "%description%",
+  "version": "10.0.0",
+  "publisher": "saiyan",
+  "license": "MIT",
+  "engines": {
+    "vscode": "*"
+  },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "id": "Saiyan Aura",
+        "label": "%themeLabel%",
+        "uiTheme": "vs-dark",
+        "path": "./themes/saiyan-aura-color-theme.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/925-oss/vscode.git"
+  }
+}
